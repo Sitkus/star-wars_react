@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import { Header, SideNavigation, FirstTab, SecondTab } from './components/';
+import Grid from '@material-ui/core/Grid';
 import './css/style.css';
 
 const App = () => {
@@ -12,15 +13,19 @@ const App = () => {
     <>
       <Router>
         <Header />
-        <SideNavigation />
-        <Switch>
-          <Route exact path={'/'}>
-            <FirstTab />
-          </Route>
-          <Route exact path={'/second-tab'}>
-            <SecondTab />
-          </Route>
-        </Switch>
+        <Grid container alignItems="center">
+          <SideNavigation />
+          <Grid item md={1} lg={2}></Grid>
+          <Switch>
+            <Route path={'/'}>
+              <FirstTab />
+            </Route>
+            <Route exact path={'/second-tab'}>
+              <SecondTab />
+            </Route>
+          </Switch>
+          <Grid item md={1} lg={2}></Grid>
+        </Grid>
       </Router>
     </>
   );

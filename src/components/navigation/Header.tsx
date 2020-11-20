@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 
+// Navigation imports
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
 
+// Icons imports
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import DescriptionIcon from '@material-ui/icons/Description';
 import InsertChartOutlinedSharpIcon from '@material-ui/icons/InsertChartOutlinedSharp';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles({
     root: {
       padding: '0 40px',
+      zIndex: 10
     },
     logo: {
       flexGrow: 1,
@@ -45,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'row',
       fontWeight: 'normal',
     },
-  }),
+  },
 );
 
 const a11yProps = (index: any) => {
@@ -97,7 +90,7 @@ export default function MenuAppBar() {
                 }} 
                 icon={<DescriptionIcon style={{marginRight: '7px'}} />} 
                 label="First tab" 
-                href="/" 
+                href="#" 
               />
               <LinkTab classes={{
                   root: classes.linkRoot,
@@ -105,7 +98,7 @@ export default function MenuAppBar() {
                 }}
                 icon={<InsertChartOutlinedSharpIcon style={{marginRight: '7px'}} />}
                 label="Second tab" 
-                href="/second-tab"
+                href="./second-tab"
               />
             </Tabs>
           </Grid>
