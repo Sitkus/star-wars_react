@@ -95,7 +95,7 @@ export default function MenuAppBar() {
                   root: classes.linkRoot,
                   wrapper: classes.linkWrapper
                 }} 
-                icon={<DescriptionIcon />} 
+                icon={<DescriptionIcon style={{marginRight: '7px'}} />} 
                 label="First tab" 
                 href="/" 
               />
@@ -103,7 +103,7 @@ export default function MenuAppBar() {
                   root: classes.linkRoot,
                   wrapper: classes.linkWrapper
                 }}
-                icon={<InsertChartOutlinedSharpIcon />}
+                icon={<InsertChartOutlinedSharpIcon style={{marginRight: '7px'}} />}
                 label="Second tab" 
                 href="/second-tab"
               />
