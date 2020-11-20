@@ -36,16 +36,14 @@ const useStyles = makeStyles((theme: Theme) =>
     linkRoot: {
       textTransform: 'inherit',
       paddingLeft: '0',
-      marginRight: '40px'
+      paddingRight: '100px',
+      marginRight: '30px'
     },
     linkWrapper: {
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
       flexDirection: 'row',
       fontWeight: 'normal',
-    },
-    linkLabelIcon: {
-      minHeight: '80px'
     },
   }),
 );
@@ -95,8 +93,7 @@ export default function MenuAppBar() {
             <Tabs value={value} onChange={handleChange}>
               <LinkTab classes={{
                   root: classes.linkRoot,
-                  wrapper: classes.linkWrapper,
-                  labelIcon: classes.linkLabelIcon
+                  wrapper: classes.linkWrapper
                 }} 
                 icon={<DescriptionIcon />} 
                 label="First tab" 
@@ -104,8 +101,7 @@ export default function MenuAppBar() {
               />
               <LinkTab classes={{
                   root: classes.linkRoot,
-                  wrapper: classes.linkWrapper,
-                  labelIcon: classes.linkLabelIcon
+                  wrapper: classes.linkWrapper
                 }}
                 icon={<InsertChartOutlinedSharpIcon />}
                 label="Second tab" 
