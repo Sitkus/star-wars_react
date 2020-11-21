@@ -13,12 +13,8 @@ import Container from '@material-ui/core/Container';
 
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import { NamedTupleMember } from 'typescript';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  gridContainer: {
-    flexWrap: 'nowrap',
-  },
   table: {
     minWidth: 650
   },
@@ -41,21 +37,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   search: {
     position: 'relative',
-    // backgroundColor: fade(theme.palette.common.white, 0.15),
-    // '&:hover': {
-    //   backgroundColor: fade(theme.palette.common.white, 0.25),
-    // },
     marginLeft: 'auto',
-    marginBottom: '40px',
+    marginBottom: '20px',
     width: '200px',
     borderBottom: '1px solid black',
-    [theme.breakpoints.up('sm')]: {
-      // marginLeft: theme.spacing(3),
-      // width: 'auto',
-    },
   },
   searchIcon: {
-    // padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -68,40 +55,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '14px'
   },
   inputInput: {
-    // padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(2)}px)`,
-    transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
   },
   tableCell: {
     padding: '7px 50px 7px 0'
   }
 }));
 
-// function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-
-//   // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   // createData('Eclair', 262, 16.0, 24, 6.0),
-//   // createData('Cupcake', 305, 3.7, 67, 4.3),
-//   // createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
-
 const FirstTab = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
   let [homes, setHomes] = useState([]);
-  const [homeWorlds, setHomeWorlds] = useState([]);
+  let [homeWorlds, setHomeWorlds] = useState([]);
 
-  const getStarWarsData = async () => {
+  const fetchSWData = async () => {
     const response = await fetch('https://swapi.dev/api/people/');
     const result = await response.json();
 
@@ -112,25 +80,24 @@ const FirstTab = () => {
     setData(result.results);
 
     homes.forEach((url: any, index: any) => {
-      getHomeWorlds(url, index);
+      fetchHomeWorlds(url, index);
     });
   }
 
-  const getHomeWorlds = async (url: string, index: number) => {
+  const fetchHomeWorlds = async (url: string, index: number) => {
     const response = await fetch(url);
-    const result = await response.json() as any;
+    const result = await response.json();
 
-    // Fix this bug
-    homeWorlds.splice(index, 0, result.name);
+    homeWorlds = [...homeWorlds, result.name] as any;
     setHomeWorlds([...homeWorlds]);
   }
   
   useEffect(() => {
-    getStarWarsData();
+    fetchSWData();
   }, []);
 
   return (
-    <Grid item>
+    <Grid item sm={10} md={8} lg={6}>
       {/* Work on making Grid item a container as well and styling it. */}
       <TableContainer component={Paper} variant="outlined" className={classes.tableRounded}>
         <Container className={classes.container}>
@@ -161,7 +128,7 @@ const FirstTab = () => {
           </TableHead>
           <TableBody>
             {
-              data.map((character: any, index: NamedTupleMember) => (
+              data.map((character: any, index: number) => (
                 <TableRow key={character.name}>
                   <TableCell className={classes.tableCell} padding="none" component="th" scope="row">
                     {character.name}
