@@ -68,9 +68,14 @@ const LinkTab = (props: LinkTabProps) => {
   );
 }
 
-export default function MenuAppBar() {
+interface HeaderProps {
+  value: any;
+  setValue: any;
+}
+
+const Header = (props: HeaderProps) => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const { value, setValue } = props;
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -84,15 +89,15 @@ export default function MenuAppBar() {
           </Grid>
           <Grid item>
             <Tabs value={value} onChange={handleChange}>
-              <LinkTab classes={{
+              <LinkTab {...a11yProps(0)} classes={{
                   root: classes.linkRoot,
-                  wrapper: classes.linkWrapper
+                  wrapper: classes.linkWrapper,
                 }} 
                 icon={<DescriptionIcon style={{marginRight: '7px'}} />} 
                 label="First tab" 
                 href="#" 
               />
-              <LinkTab classes={{
+              <LinkTab {...a11yProps(0)} classes={{
                   root: classes.linkRoot,
                   wrapper: classes.linkWrapper
                 }}
@@ -111,3 +116,5 @@ export default function MenuAppBar() {
       </AppBar>
   );
 }
+
+export default Header;

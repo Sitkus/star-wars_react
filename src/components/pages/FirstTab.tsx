@@ -97,52 +97,49 @@ const FirstTab = () => {
   }, []);
 
   return (
-    <Grid item sm={10} md={8} lg={6}>
-      {/* Work on making Grid item a container as well and styling it. */}
-      <TableContainer component={Paper} variant="outlined" className={classes.tableRounded}>
-        <Container className={classes.container}>
-          <Typography className={classes.h1} variant="h1">Star wars</Typography>
-          <Typography className={classes.h2} variant="h2">Star wars heroes from swapi api</Typography>
-        </Container>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="search company..."
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-          />
+    <TableContainer component={Paper} variant="outlined" className={classes.tableRounded}>
+      <Container className={classes.container}>
+        <Typography className={classes.h1} variant="h1">Star wars</Typography>
+        <Typography className={classes.h2} variant="h2">Star wars heroes from swapi api</Typography>
+      </Container>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
         </div>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.tableCell} padding="none">Name</TableCell>
-              <TableCell className={classes.tableCell} padding="none">Birth date</TableCell>
-              <TableCell className={classes.tableCell} padding="none">Gender</TableCell>
-              <TableCell className={classes.tableCell} padding="none">Home world</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              data.map((character: any, index: number) => (
-                <TableRow key={character.name}>
-                  <TableCell className={classes.tableCell} padding="none" component="th" scope="row">
-                    {character.name}
-                  </TableCell>
-                  <TableCell className={classes.tableCell} padding="none">{character.birth_year}</TableCell>
-                  <TableCell className={classes.tableCell} padding="none">{character.gender}</TableCell>
-                  <TableCell className={classes.tableCell} padding="none">{homeWorlds[index]}</TableCell>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Grid>
+        <InputBase
+          placeholder="search company..."
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'search' }}
+        />
+      </div>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.tableCell} padding="none">Name</TableCell>
+            <TableCell className={classes.tableCell} padding="none">Birth date</TableCell>
+            <TableCell className={classes.tableCell} padding="none">Gender</TableCell>
+            <TableCell className={classes.tableCell} padding="none">Home world</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {
+            data.map((character: any, index: number) => (
+              <TableRow key={character.name}>
+                <TableCell className={classes.tableCell} padding="none" component="th" scope="row">
+                  {character.name}
+                </TableCell>
+                <TableCell className={classes.tableCell} padding="none">{character.birth_year}</TableCell>
+                <TableCell className={classes.tableCell} padding="none">{character.gender}</TableCell>
+                <TableCell className={classes.tableCell} padding="none">{homeWorlds[index]}</TableCell>
+              </TableRow>
+            ))
+          }
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 

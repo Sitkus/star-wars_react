@@ -55,7 +55,6 @@ const SideNavigation = () => {
           classes={{
             root: classes.tabsRoot,
             indicator: classes.tabsIndicator,
-            // flexContainerVertical: classes.tabsVertical
           }}
         >
           <Tab 

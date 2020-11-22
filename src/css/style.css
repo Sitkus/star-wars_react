@@ -38,3 +38,7 @@ img {
 /*------------------------------------*\
   #Overides
 \*------------------------------------*/
+
+.MuiTabs-flexContainerVertical {
+  align-items: center;
+}
