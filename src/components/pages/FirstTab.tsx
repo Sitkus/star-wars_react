@@ -18,9 +18,6 @@ import InputBase from '@material-ui/core/InputBase';
 
 // Styling for Material UI Components
 const useStyles = makeStyles((theme: Theme) => ({
-  table: {
-    // minWidth: 650
-  },
   container: {
     marginBottom: '30px'
   },
@@ -150,7 +147,7 @@ const FirstTab = () => {
             />
           </div>
 
-          <Table className={classes.table}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableCell} padding="none">Name</TableCell>
