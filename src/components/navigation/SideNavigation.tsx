@@ -1,38 +1,47 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+
+// Material UI Components
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Grid from '@material-ui/core/Grid';
 
+// Styling for Material UI Components
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: theme.palette.secondary.main,
-    color: 'white',
     display: 'flex',
     height: 'calc(100vh - 72px)',
     width: '100%',
+    maxWidth: '250px',
     paddingTop: '70px'
   },
   gridContainer: {
-    alignItems: 'center',
+    alignItems: 'center'
   },
   linkRoot: {
+    width: '100%',
     textTransform: 'inherit',
     fontWeight: 'normal',
+    borderBottom: '1px solid white',
+    '&:first-child': {
+      borderTop: '1px solid white'
+    }
   },
   tabsRoot: {
     color: 'white'
   },
   tabsIndicator: {
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     width: '100%',
-    color: 'black',
     zIndex: -1
   },
+  activeTab: {
+    backgroundColor: 'white',
+    color: 'black'
+  },
   tabsVertical: {
-    alignItems: 'center',
+    alignItems: 'center'
   }
 }));
 
@@ -44,40 +53,48 @@ const SideNavigation = () => {
     setValue(newValue);
   };
 
+  const getTabStyle = (isActive: boolean): string => {
+    return isActive ? classes.activeTab : '';
+  }
+
   return (
-    <Grid item lg={2}>
-      <AppBar position="sticky" className={classes.root}>
-        <Tabs
-          indicatorColor="primary"
-          orientation="vertical"
-          value={value}
-          onChange={handleChange}
+    <AppBar position="sticky" className={classes.root}>
+      <Tabs
+        centered={true}
+        indicatorColor="primary"
+        orientation="vertical"
+        value={value}
+        onChange={handleChange}
+        classes={{
+          root: classes.tabsRoot,
+          indicator: classes.tabsIndicator
+        }}
+      >
+        <Tab 
           classes={{
-            root: classes.tabsRoot,
-            indicator: classes.tabsIndicator,
+            root: classes.linkRoot
           }}
-        >
-          <Tab 
-            classes={{
-              root: classes.linkRoot
-            }}
-            label="First" 
-          />
-          <Tab
-            classes={{
-              root: classes.linkRoot
-            }}
-            label="Second"
-          />
-          <Tab
-            classes={{
-              root: classes.linkRoot
-            }}
-            label="Third"
-          />
-        </Tabs>
-      </AppBar>
-    </Grid>
+          className={getTabStyle(value === 0)}
+          label="First" 
+        />
+
+        <Tab
+          classes={{
+            root: classes.linkRoot
+          }}
+          className={getTabStyle(value === 1)}
+          label="Second"
+        />
+
+        <Tab
+          classes={{
+            root: classes.linkRoot
+          }}
+          className={getTabStyle(value === 2)}
+          label="Third"
+        />
+      </Tabs>
+    </AppBar>
   );
 }
 

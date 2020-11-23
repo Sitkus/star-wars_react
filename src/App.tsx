@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
-import { Header, SideNavigation, FirstTab, SecondTab } from './components/';
-import Grid from '@material-ui/core/Grid';
 import './css/style.css';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Header, SideNavigation, FirstTab, SecondTab } from './components/';
+
+// Material UI Components
+import Grid from '@material-ui/core/Grid';
+
+// Styling for Material UI Components
+const useStyles = makeStyles((theme: Theme) => ({
+  sideNavigation: {
+    alignSelf: 'flex-start'
+  }
+}));
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -16,6 +19,7 @@ interface TabPanelProps {
   value: any;
 }
 
+// Custom TabPanel for navigation
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
@@ -33,25 +37,35 @@ const TabPanel = (props: TabPanelProps) => {
 }
 
 const App = () => {
+  const classes = useStyles();
   const [value, setValue] = useState(0);
 
   return (
     <>
       <Header value={value} setValue={setValue} />
+
       <Grid container alignItems="center">
-        <SideNavigation />
-        <Grid item md={1} lg={2}></Grid>
+
+        <Grid item lg={2} className={classes.sideNavigation}>
+          <SideNavigation />
+        </Grid>
+
+        <Grid item sm={true} md={1} lg={2}></Grid>
+
         <Grid item md={8} lg={6}>
           <TabPanel value={value} index={0}>
             <FirstTab />
           </TabPanel>
         </Grid>
+
         <Grid item md={8} lg={6}>
           <TabPanel value={value} index={1}>
             <SecondTab />
           </TabPanel>
         </Grid>
-        <Grid item md={1} lg={2}></Grid>
+
+        <Grid item sm={true} md={1} lg={2}></Grid>
+
       </Grid>
     </>
   );
