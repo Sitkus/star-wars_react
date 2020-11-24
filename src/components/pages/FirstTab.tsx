@@ -21,19 +21,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     marginBottom: '30px'
   },
-  tableRounded: {
+  table: {
     borderRadius: '15px',
-    padding: '40px 30px 30px'
-  },
-  h1: {
-    fontSize: '34px',
-    fontWeight: 'lighter',
-    textAlign: 'center',
-    marginBottom: '10px'
-  },
-  h2: {
-    fontSize: '16px',
-    textAlign: 'center'
+    padding: '40px 30px 30px',
+    margin: '40px 0',
+    '@media screen and (max-width: 850px)': {
+      padding: '20px 40px',
+    }
   },
   search: {
     position: 'relative',
@@ -67,7 +61,7 @@ const FirstTab = () => {
   const classes = useStyles();
   const [data, setData] = useState<any>([]);
   const [apiData, setApiData] = useState([] as any);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   let [homes, setHomes] = useState<number>(0);
 
   /**
@@ -77,13 +71,21 @@ const FirstTab = () => {
     const response = await fetch('https://swapi.dev/api/people/');
     const resultData = await response.json();
 
-    resultData.results.forEach((character: any, index: number, data: any) => {
+    resultData.results.forEach((character: {}, index: number, data: []) => {
       fetchHomeWorld(character, index, data);
     });
 
     setData(resultData.results);
   }
 
+  // interface CharacterProps {
+  //   name: string;
+  //   birth_year: string;
+  //   gender: string;
+  //   homeworld?: string | undefined | null;
+  //   home?: string;
+  // }
+  
   /**
    * Secondary: fetching homeworld for each individual character
    * 
@@ -101,7 +103,7 @@ const FirstTab = () => {
     setData([...data]);
     setApiData([...data]);
 
-    setIsLoading(homes === 10 ? false : true);
+    setIsLoading(homes >= 10 ? false : true);
   }
 
   /**
@@ -126,11 +128,11 @@ const FirstTab = () => {
       {
         isLoading ?
         null :
-        <TableContainer component={Paper} variant="outlined" className={classes.tableRounded}>
+        <TableContainer component={Paper} variant="outlined" className={classes.table}>
 
           <Container className={classes.container}>
-            <Typography className={classes.h1} variant="h1">Star wars</Typography>
-            <Typography className={classes.h2} variant="h2">Star wars heroes from swapi api</Typography>
+            <Typography gutterBottom align="center" variant="h1">Star wars</Typography>
+            <Typography gutterBottom align="center" variant="h2">Star wars heroes from swapi api</Typography>
           </Container>
 
           <div className={classes.search}>

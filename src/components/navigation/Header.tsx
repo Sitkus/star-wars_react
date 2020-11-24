@@ -19,6 +19,11 @@ const useStyles = makeStyles({
       padding: '0 40px',
       zIndex: 10
     },
+    appBar: {
+      '@media screen and (max-width: 850px)': {
+        boxShadow: 'none'
+      }
+    },
     logo: {
       flexGrow: 1
     },
@@ -46,7 +51,7 @@ const useStyles = makeStyles({
   }
 );
 
-const a11yProps = (index: any) => {
+const a11yProps = (index: number) => {
   return {
     id: `nav-tab-${index}`,
     'aria-controls': `nav-tabpanel-${index}`,
@@ -67,7 +72,7 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-      <AppBar color="transparent" position="static">
+      <AppBar color="inherit" position="sticky" className={classes.appBar}>
         <Grid container alignItems="center" className={classes.root}>
 
           <Grid item className={classes.logo}>

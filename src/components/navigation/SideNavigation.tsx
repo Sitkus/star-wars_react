@@ -14,7 +14,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 'calc(100vh - 72px)',
     width: '100%',
     maxWidth: '250px',
-    paddingTop: '70px'
+    paddingTop: '70px',
+    zIndex: 1,
+    '@media screen and (max-width: 850px)': {
+      backgroundColor: theme.palette.primary.dark,
+      color: 'black',
+      maxWidth: 'none',
+      paddingTop: 0,
+      height: 'auto',
+      boxShadow: 'none'
+    }
   },
   gridContainer: {
     alignItems: 'center'
@@ -26,6 +35,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderBottom: '1px solid white',
     '&:first-child': {
       borderTop: '1px solid white'
+    },
+    '@media screen and (max-width: 850px)': {
+      border: 'none',
+      width: 'auto',
+      '&:first-child': {
+        border: 'none'
+      }
     }
   },
   tabsRoot: {
@@ -34,14 +50,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabsIndicator: {
     backgroundColor: 'white',
     width: '100%',
-    zIndex: -1
+    zIndex: -1,
+    '@media screen and (max-width: 850px)': {
+      backgroundColor: 'inherit'
+    }
   },
   activeTab: {
     backgroundColor: 'white',
-    color: 'black'
+    color: 'black',
+    '@media screen and (max-width: 850px)': {
+      backgroundColor: 'inherit',
+      color: 'inherit'
+    }
   },
   tabsVertical: {
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media screen and (max-width: 850px)': {
+      flexDirection: 'row'
+    }
   }
 }));
 
@@ -58,7 +84,7 @@ const SideNavigation = () => {
   }
 
   return (
-    <AppBar position="sticky" className={classes.root}>
+    <AppBar position="static" className={classes.root}>
       <Tabs
         centered={true}
         indicatorColor="primary"
@@ -67,8 +93,9 @@ const SideNavigation = () => {
         onChange={handleChange}
         classes={{
           root: classes.tabsRoot,
-          indicator: classes.tabsIndicator
-        }}
+          indicator: classes.tabsIndicator,
+          flexContainerVertical: classes.tabsVertical
+        } as any}
       >
         <Tab 
           classes={{

@@ -8,8 +8,20 @@ import Grid from '@material-ui/core/Grid';
 
 // Styling for Material UI Components
 const useStyles = makeStyles((theme: Theme) => ({
+  gridContainer: {
+    '@media screen and (max-width: 850px)': {
+      flexDirection: 'column'
+    }
+  },
   sideNavigation: {
-    alignSelf: 'flex-start'
+    position: 'sticky',
+    top: '72px',
+    left: 0,
+    height: '100%',
+    alignSelf: 'flex-start',
+    '@media screen and (max-width: 850px)': {
+      width: '100%'
+    }
   }
 }));
 
@@ -44,7 +56,7 @@ const App = () => {
     <>
       <Header value={value} setValue={setValue} />
 
-      <Grid container alignItems="center">
+      <Grid container alignItems="center" className={classes.gridContainer}>
 
         <Grid item lg={2} className={classes.sideNavigation}>
           <SideNavigation />
