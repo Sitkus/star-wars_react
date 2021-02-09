@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const SecondTab = () => {
-  return (
-    <></>
-  );
+function SecondTab() {
+  return <></>;
 }
 
 export default SecondTab;
